@@ -1,0 +1,133 @@
+.next-steps {
+  color: $next-steps-color;
+  @include display(flex);
+  margin-left: $sidebar-width;
+  max-width: $max-width-main;
+  padding-left: $main-padding;
+  padding-right: $main-padding-sm;
+  z-index: 2;
+
+  @include media($tighten) {
+    margin-left: $sidebar-width-sm;
+    padding-left: $main-padding-sm;
+  }
+
+  > div {
+    @include align-items(center);
+    background: $next-steps-bg;
+    border: 1px solid $next-steps-border;
+    border-right-width: 0;
+    @include display(inline-flex);
+    @include flex(1);
+    padding: 1.2rem 2.2rem 1.2rem 3rem;
+    position: relative;
+    width: 430px;
+
+    @include media($tighten) {
+      padding-right: 1.6rem;
+    }
+
+    &:first-of-type {
+      border-left: 1px solid #EDDAA5;
+      border-radius: 3px 0 0 3px;
+      @include flex(1.2);
+      padding-left: 2.4rem;
+    }
+
+    &:last-of-type, &:only-of-type {
+      @include border-right-radius(3px);
+      border-right-width: 1px;
+
+      &:after {
+        display: none;
+      }
+    }
+
+    .button {
+      @extend %exercise-buttons;
+    }
+
+    &:after {
+      $size: 33px;
+      background-color: $next-steps-bg;
+      background-image: image_url('arrow-next-step.svg');
+      background-position: 50%;
+      background-repeat: no-repeat;
+      border: 1px solid desaturate(darken($next-steps-border, 22%), 20%);
+      border-radius: $size;
+      content: "";
+      height: $size;
+      margin-top: -$size/2;
+      position: absolute;
+      right: -$size/2 - 1;
+      top: 50%;
+      width: $size;
+      z-index: 1;
+    }
+  }
+
+  h1 {
+    font-size: $base-font-size-sm-1;
+    margin-bottom: 0.3em;
+  }
+
+  h2 {
+    @extend %no-font-smoothing;
+    font-size: $base-font-size-sm-2;
+    font-weight: 500;
+    margin-bottom: 0.8em;
+  }
+
+  p, li, a {
+    font-size: $base-font-size-sm-2;
+    font-weight: 500;
+    line-height: 1.6em;
+    margin-bottom: 0;
+  }
+
+
+  .inner {
+    &.has-icon {
+      margin-left: -1rem;
+    }
+
+    .icon {
+      display: table-cell;
+      vertical-align: middle;
+
+      &.checkmark {
+        @extend %icon-checkmark;
+      }
+
+      &.clock {
+        @extend %icon-clock;
+      }
+
+      &.comment {
+        @extend %icon-comment;
+      }
+
+      img {
+        $s: 40px;
+        border-radius: $s;
+        max-width: $s;
+        max-height: $s;
+      }
+    }
+
+    img.avatar {
+      border-radius: 50%;
+      float: left;
+      height: 48px;
+      width: 48px;
+      margin: -0.3rem;
+      margin-right: 0.1rem;
+    }
+
+    .content {
+      display: table-cell;
+      padding-left: $base-padding;
+      vertical-align: top;
+    }
+  }
+}

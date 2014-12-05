@@ -1,0 +1,9 @@
+.solution-index
+  %table.solution-list
+    - @solutions.each do |solution|
+      %tr
+        %td= link_to solution.exercise.title,
+          exercise_solution_path(solution.exercise, solution.user)
+        %td= solution.user.username
+        %td= t('.comments', count: solution.comments_count)
+        %td  #{time_ago_in_words(solution.created_at)} ago

@@ -1,0 +1,185 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+
+  &.admin-exercises, &.admin-dashboards {
+    background: $sidebar-bg;
+
+    article.main-inner {
+      background: #fff;
+      @include align-main-container;
+    }
+  }
+}
+
+section.main {
+  &.solutions {
+    background: none;
+  }
+
+  .main-inner.instructions {
+    max-width: $max-width-main;
+  }
+}
+
+ol {
+  @extend %default-ol;
+}
+
+nav.main {
+  $tabs-padding-top: 13px;
+  $tab-padding: 1.7em 4em 0;
+  $tab-height: $nav-height - $tabs-padding-top;
+  background: #3E3C44;
+  height: $nav-height;
+  min-width: $min-width-main;
+
+  .align-main {
+    padding-right: nth($sidebar-padding, 2);
+  }
+
+  &, a {
+    color: #999;
+  }
+
+  a {
+    display: block;
+    float: left;
+    height: $nav-height;
+    line-height: 1;
+    padding: 1.8em 0 0;
+  }
+
+  .nav-back {
+    @include clearfix;
+    float: left;
+    height: $nav-height;
+    padding: 0 nth($sidebar-padding, 1);
+    width: $sidebar-width;
+
+    @include media($tighten) {
+      padding: 0 nth($sidebar-padding-sm, 2);
+      width: $sidebar-width-sm;
+    }
+  }
+
+  .tabs {
+    float: left;
+    margin-left: 1px;
+    padding-top: $tabs-padding-top;
+
+    a {
+      border-radius: 4px 4px 0 0;
+      font-size: $base-font-size-sm-3;
+      font-weight: 600;
+      height: $tab-height;
+      line-height: 1;
+      margin-right: 4px;
+      padding: $tab-padding;
+      text-transform: uppercase;
+
+      @include media(max-width 960px) {
+        padding-left: 2em;
+        padding-right: 2em;
+      }
+
+      .revisions-show &.solutions,
+      .exercises-show &.instructions {
+        color: $base-font-color;
+
+        &.solutions {
+          background: $sidebar-bg;
+        }
+
+        &.instructions {
+          background: #fff;
+        }
+      }
+    }
+  }
+
+  .exercise-title {
+    float: right;
+    font-size: $base-font-size-sm-1;
+    height: $tab-height;
+
+    span {
+      display: inline-block;
+      padding: 2.1em 3em 0 0;
+    }
+  }
+
+  .exercise-nav {
+    float: right;
+    overflow: auto;
+
+    a {
+      font-weight: bold;
+      margin-right: 2rem;
+    }
+  }
+}
+
+nav.exercise {
+  border-bottom: 2px solid $sidebar-border;
+  margin-bottom: 2.5rem;
+
+  a {
+    display: inline-block;
+    font-size: 1rem;
+    margin-right: 1rem;
+    padding: 1rem 1.5rem 1rem 40px;
+    position: relative;
+
+    &:before {
+      height: 30px;
+      width: 30px;
+      content: "";
+      position: absolute;
+      top: 10px;
+      left: 0;
+      background-position: center;
+    }
+
+    &.active {
+      box-shadow: 0 2px 0 #ccc;
+    }
+
+    &.instructions:before {
+      background: image_url('instructions.svg') no-repeat center;
+      background-size: 30px;
+    }
+
+    &.solutions {
+      padding-left: 46px;
+
+      &:before {
+        background: image_url('solutions.svg') no-repeat center;
+        background-size: 36px;
+        width: 36px;
+        top: 11px;
+      }
+    }
+  }
+}
+
+.main-inner {
+  position: relative;
+  padding-top: 2rem;
+}
+
+.main-body {
+  @include clearfix;
+  margin-left: $sidebar-width;
+  max-width: $max-width-main;
+  min-width: $min-width-main;
+  padding: 0 $main-padding-sm 2rem $main-padding;
+
+  @include media($tighten) {
+    margin-left: $sidebar-width-sm;
+    padding-left: $main-padding-sm;
+  }
+}

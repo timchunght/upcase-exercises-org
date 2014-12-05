@@ -1,0 +1,24 @@
+= render "exercises/navigation",
+  exercise: @review.exercise,
+  solutions: @review.solutions
+
+%header.solutions-main
+  %nav.participants
+    = render "exercises/my_solution",
+      solutions: @review.solutions,
+      exercise: @review.exercise
+
+    .exercise-progress-bar
+      = render "exercises/progress_bar", progress: @review.progress
+
+
+  %section.next-steps
+    = render @review.status, status: @review.status
+
+%div.main-inner
+  = render "solutions/revision_history", feedback: @review.feedback
+
+  %nav.participants
+    = render "peer_solutions", solutions: @review.solutions
+
+  = render "revisions/feedback", feedback: @review.feedback

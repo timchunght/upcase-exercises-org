@@ -1,0 +1,11 @@
+.exercise-index
+  = link_to new_admin_exercise_path, class: 'add-new-exercise' do
+    = t('.create_exercise')
+    %i.fa.fa-plus-circle.fa-lg
+
+  %ol.exercise-list
+    - @exercises.each do |exercise|
+      %li
+        = link_to edit_admin_exercise_path(exercise) do
+          = exercise.title
+          %i.fa.fa-pencil.fa-lg

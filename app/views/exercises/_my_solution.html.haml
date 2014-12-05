@@ -1,0 +1,8 @@
+%ul.solutions.my-solution
+  - solutions.submitted_solution.present do |solution|
+    = render solution, solutions: solutions
+  - solutions.submitted_solution.blank do
+    %li
+      = link_to exercise_path(exercise) do
+        = render 'solutions/user', user: current_user
+        %span.review-status= t('solutions.show.no_solution')

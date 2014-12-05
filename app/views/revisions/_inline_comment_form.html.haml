@@ -1,0 +1,11 @@
+.make-comment{ :data => { :role => "make-comment" } }
+  = link_to "", "#"
+
+%script{ :type => "text/html", :data => { :template => "inline-comments" } }
+  = render "solutions/inline_comments",
+    comments: [],
+    location: "",
+    revision: revision
+
+%script{ :type => "text/html", :data => { :template => "show-comments" } }
+  = render "comments/show_comments_icon", comments: []

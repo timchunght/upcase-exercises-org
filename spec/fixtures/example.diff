@@ -1,0 +1,240 @@
+diff --git a/app/models/email_splitter.rb b/app/models/email_splitter.rb
+new file mode 100644
+index 0000000..8e1fbbd
+--- /dev/null
++++ b/app/models/email_splitter.rb
+@@ -0,0 +1,13 @@
++class EmailSplitter
++  def initialize(recipients)
++    @recipients = recipients
++  end
++
++  def emails
++    recipients.gsub(/\s+/, '').split(/[\n,;]+/)
++  end
++
++  private
++
++  attr_reader :recipients
++end
+diff --git a/app/models/survey_inviter.rb b/app/models/survey_inviter.rb
+index 044dc76..2a4f3ca 100644
+--- a/app/models/survey_inviter.rb
++++ b/app/models/survey_inviter.rb
+@@ -1,65 +1,64 @@
+ # Despite our best intentions, this class has acquired too many
+ # responsibilities.
+ #
+ # Here's an incomplete list:
+ #   1. Verifying that the message is valid.
+ #   2. Verifying that the recipient emails are valid.
+ #   3. Stripping spaces from email addresses.
+ #   4. Splitting email addresses on several delimiters.
+ #   5. Delivering invitations.
+ #
+ # TODO: Let's improve this code by extracting a new class to handle
+ # responsibilities 3 and 4. Create an EmailSplitter class to perform these
+ # tasks, and call it from this class. The exact place you should call is marked
+ # with a comment.
+ class SurveyInviter
+   EMAIL_REGEX = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/
+ 
+   def initialize(attributes = {})
+     @survey = attributes[:survey]
+     @message = attributes[:message] || ''
+     @recipients = attributes[:recipients] || ''
+     @sender = attributes[:sender]
+   end
+ 
+   attr_reader :message, :recipients, :survey
+ 
+   def valid?
+     valid_message? && valid_recipients?
+   end
+ 
+   def deliver
+     recipient_list.each do |email|
+       invitation = Invitation.create(
+         survey: @survey,
+         sender: @sender,
+         recipient_email: email,
+         status: 'pending'
+       )
+       Mailer.invitation_notification(invitation, @message)
+     end
+   end
+ 
+   def invalid_recipients
+     @invalid_recipients ||= recipient_list.map do |item|
+       unless item.match(EMAIL_REGEX)
+         item
+       end
+     end.compact
+   end
+ 
+   private
+ 
+   def valid_message?
+     @message.present?
+   end
+ 
+   def valid_recipients?
+     invalid_recipients.empty?
+   end
+ 
+   def recipient_list
+-    # TODO: Once it exists, you should call EmailSplitter on the next line.
+-    @recipient_list ||= @recipients.gsub(/\s+/, '').split(/[\n,;]+/)
++    @recipient_list ||= EmailSplitter.new(recipients).emails
+   end
+ end
+diff --git a/spec/models/email_splitter_spec.rb b/spec/models/email_splitter_spec.rb
+new file mode 100644
+index 0000000..9aaa8eb
+--- /dev/null
++++ b/spec/models/email_splitter_spec.rb
+@@ -0,0 +1,21 @@
++require 'spec_helper'
++
++describe EmailSplitter do
++  it 'splits on commas' do
++    splitter = EmailSplitter.new('one@example.com,two@example.com')
++
++    expect(splitter.emails).to eq ['one@example.com', 'two@example.com']
++  end
++
++  it 'splits on semicolons' do
++    splitter = EmailSplitter.new('one@example.com;two@example.com')
++
++    expect(splitter.emails).to eq ['one@example.com', 'two@example.com']
++  end
++
++  it 'strips spaces' do
++    splitter = EmailSplitter.new('  one@example.com;  two@example.com  ')
++
++    expect(splitter.emails).to eq ['one@example.com', 'two@example.com']
++  end
++end
+diff --git a/spec/models/survey_inviter_spec.rb b/spec/models/survey_inviter_spec.rb
+index a19a0ef..0066a4f 100644
+--- a/spec/models/survey_inviter_spec.rb
++++ b/spec/models/survey_inviter_spec.rb
+@@ -1,112 +1,105 @@
+ require 'spec_helper'
+ 
+ describe SurveyInviter, '#valid?' do
+   it 'is invalid with any invalid recipients' do
+     inviter = with_recipients('invalid, valid@example.com')
+     expect(inviter).not_to be_valid
+   end
+ 
+   it 'is invalid without a domain' do
+     inviter = with_recipients('user@')
+     expect(inviter).not_to be_valid
+   end
+ 
+   it 'is invalid without a user' do
+     inviter = with_recipients('@example.com')
+     expect(inviter).not_to be_valid
+   end
+ 
+   it 'is invalid with an invalid tld' do
+     inviter = with_recipients('user@invalid.x')
+     expect(inviter).not_to be_valid
+   end
+ 
+   it 'is invalid without a message' do
+     inviter = SurveyInviter.new(message: '', recipients: 'user@example.com')
+     expect(inviter).not_to be_valid
+   end
+ 
+   it 'is valid with a message and recipients' do
+     inviter =
+       SurveyInviter.new(message: 'valid', recipients: 'user@example.com')
+     expect(inviter).to be_valid
+   end
+ 
+   it 'is valid with a subdomain' do
+     inviter = with_recipients('user@subdomain.example.com')
+     expect(inviter).to be_valid
+   end
+ 
+   def with_recipients(recipients)
+     SurveyInviter.new(message: 'valid', recipients: recipients)
+   end
+ end
+ 
+ describe SurveyInviter, '#deliver' do
+   it 'invites recipients' do
+     survey = build(:survey)
+     sender = build(:sender)
+     message = 'Take my survey!'
+     recipient = 'one@example.com'
+     invitation = stub_invitation
+ 
+     deliver(
+       survey: survey,
+       sender: sender,
+       message: message,
+       recipients: recipient
+     )
+ 
+     expect_invitations_to(
+       [recipient],
+       survey: survey,
+       sender: sender,
+       status: 'pending'
+     )
+     expect(Mailer).
+       to have_received(:invitation_notification).
+         with(invitation, message)
+   end
+ 
+-  it 'splits on commas' do
++  it 'delivers to email addresses parsed by EmailSplitter' do
+     stub_invitation
+-    deliver(recipients: 'one@example.com,two@example.com')
+-    expect_invitations_to(['one@example.com', 'two@example.com'])
+-  end
++    recipients = 'foo@bar.com'
++    splitter_stub = stub('EmailSplitter', emails: [recipients])
++    EmailSplitter.stubs(new: splitter_stub)
+ 
+-  it 'splits on semicolons' do
+-    stub_invitation
+-    deliver(recipients: 'one@example.com;two@example.com')
+-    expect_invitations_to(['one@example.com', 'two@example.com'])
+-  end
++    deliver
+ 
+-  it 'strips spaces' do
+-    stub_invitation
+-    deliver(recipients: '  one@example.com;  two@example.com  ')
+-    expect_invitations_to(['one@example.com', 'two@example.com'])
++    expect_invitations_to([recipients])
+   end
+ 
+   def deliver(attributes = {})
+     SurveyInviter.new(
+       survey: attributes[:survey] || build(:survey),
+       sender: attributes[:sender] || build(:sender),
+       message: attributes[:message] || 'Take my survey!',
+       recipients: attributes[:recipients] || 'user@example.com'
+     ).deliver
+   end
+ 
+   def stub_invitation
+     stub('invitation').tap do |invitation|
+       Invitation.stubs(:create).returns(invitation)
+       Mailer.stubs(:invitation_notification)
+     end
+   end
+ 
+   def expect_invitations_to(recipients, attributes = {})
+     recipients.each do |recipient|
+       expect(Invitation).to have_received(:create).with(
+         has_entries(attributes.merge(recipient_email: recipient))
+       )
+     end
+   end
+ end

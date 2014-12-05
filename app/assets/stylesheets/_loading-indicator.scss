@@ -1,0 +1,12 @@
+.loading-indicator {
+  .loading-logo {
+    @extend %animation-bob;
+    float: left;
+    margin-right: 15px;
+  }
+
+  p {
+    color: #7B7A7A;
+    font-weight: 700;
+  }
+}

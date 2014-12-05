@@ -1,0 +1,6 @@
+= render 'avatar', user: user
+%span.username
+  - if user == current_user
+    = t('solutions.show.my_solution')
+  - else
+    = t('solutions.show.solution_for_user', username: user.username)

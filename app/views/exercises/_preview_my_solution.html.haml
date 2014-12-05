@@ -1,0 +1,17 @@
+#preview-my-solution
+  %section.setup
+    .inner
+      %h3= t("exercises.show.push_solution")
+      %p Once you're finished, push your solution to your fork:
+      %pre
+        %code git push origin master
+      %p Then press the button below.
+
+  - if overview.unpushed?
+    = button_to t("exercises.show.no_commits"),
+      exercise_solutions_path(overview.exercise),
+      disabled: true
+  - else
+    = link_to t("exercises.show.preview_my_solution"),
+      new_exercise_solution_path(overview.exercise),
+      class: "button"

@@ -1,0 +1,18 @@
+%section.setup
+  .inner
+    %h3 Upload SSH Public Key
+
+    %p
+      Before you start an exercise, we need your SSH public key so that we can
+      authorize your Git client.
+
+    :markdown
+      You can generally find this in `~/.ssh/id_rsa.pub`.
+
+      If you need help setting up your public key, [let us know].
+
+      [let us know]: mailto:help@upcase.com
+
+  = render 'gitolite/public_keys/form',
+    return_to: return_to,
+    public_key: Gitolite::PublicKey.new

@@ -1,0 +1,12 @@
+%section.setup#set-username
+  .inner
+    %h3 Set Username
+
+    %p
+      Before you start an exercise, we need a unique username we can identify
+      you by. This username will be used in Git URLs and displayed to other
+      users.
+
+  = simple_form_for user, url: exercise_username_path(params[:exercise_id]) do |form|
+    = form.input :username, label: false, placeholder: 'Username'
+    = form.submit t('helpers.submit.username.update')

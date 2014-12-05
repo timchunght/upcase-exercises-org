@@ -1,0 +1,20 @@
+%section.setup
+  .inner
+    %h3 Setup instructions
+    %p Clone and setup the exercise repository:
+    = render clone.repository
+    %p.clone-help
+      = link_to t("exercises.show.view_fingerprints"),
+        "#",
+        class: "fingerprints-toggle"
+      &middot;
+      = link_to t("exercises.show.clone_help"),
+        clone_help_page_path(return_to: exercise_path(exercise)),
+        remote: true
+
+    = render "clones/fingerprints", repository: clone.repository
+
+%section.instructions
+  %h1.title Exercise instructions
+  :markdown
+    #{exercise.instructions}

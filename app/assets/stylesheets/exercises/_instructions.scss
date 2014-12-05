@@ -1,0 +1,113 @@
+section.main article.main-inner, .preview {
+  header {
+    margin-bottom: 1.5rem;
+
+    h1 {
+      font-weight: 800;
+    }
+
+    h2 {
+      color: $medium-gray;
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-top: 0.2em;
+    }
+  }
+
+  p {
+    margin-bottom: 1.2em;
+    line-height: 1.8em;
+  }
+
+  .clone-help {
+    margin-bottom: 0;
+    text-align: right;
+  }
+
+  .intro, .setup {
+    border-bottom: 1px solid #EEE;
+    padding: $base-margin/2 0 $base-margin*1.25;
+  }
+
+  .video, .intro, .setup {
+    margin-bottom: 3.5rem;
+  }
+
+  .video iframe {
+    height: 405px;
+    width: 100%;
+  }
+
+  pre {
+    margin-bottom: $base-margin*1.5;
+
+    code {
+      background: #f6f6f6;
+      border-radius: 3px;
+      display: block;
+      padding: $base-padding;
+      width: 100%;
+    }
+
+    &.fingerprints {
+      display: none;
+    }
+  }
+
+  input[type=submit], .button {
+    background: $button-green;
+    border-radius: 3px;
+    color: #fff;
+    display: block;
+    font-size: $base-font-size-lg-3;
+    font-weight: 400;
+    margin-top: $base-margin*2;
+    padding: 1rem;
+    text-align: center;
+    -webkit-font-smoothing: subpixel-antialiased;
+    width: 100%;
+
+    &[disabled] {
+      background: grayscale($button-green);
+      cursor: not-allowed;
+    }
+  }
+
+  .intro,
+  .instructions {
+    .title {
+      font-size: $h1-font-size;
+      font-weight: 800;
+      margin-top: 0;
+      text-transform: none;
+    }
+
+    h1, h2, h3 {
+      font-size: $base-font-size-lg-1;
+      font-weight: 600;
+      margin: 3em 0 1em;
+      text-transform: uppercase;
+    }
+
+    ol, ul {
+      margin-bottom: 2em;
+    }
+
+    ol {
+      list-style: decimal;
+    }
+
+    ul {
+      list-style: disc;
+    }
+
+    li {
+      line-height: 1.6;
+      margin-bottom: 0.6em;
+    }
+  }
+
+  .prettyprint {
+    font-size: 1rem;
+  }
+}

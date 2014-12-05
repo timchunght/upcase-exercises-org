@@ -1,0 +1,7 @@
+- content_for :page_title, 'Set Username'
+
+%article.main-inner
+  %header
+    %h1= 'Set Username'
+
+  = render 'usernames/edit', user: current_user

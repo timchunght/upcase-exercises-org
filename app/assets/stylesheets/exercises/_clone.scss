@@ -1,0 +1,19 @@
+section.main article.main-inner {
+  .setup {
+    padding-bottom: 50px;
+
+    .inner {
+      background: rgba($base-bg-active, 0.2);
+      border: 1px solid rgba($base-border-active, 0.3);
+      padding: 40px;
+      position: relative;
+      text-shadow: 0 1px 0 hsla(0, 0%, 100%, 0.5);
+    }
+
+    code {
+      background: #fff;
+      border: 1px solid rgba($base-border-active, 0.5);
+      line-height: 1.8;
+    }
+  }
+}

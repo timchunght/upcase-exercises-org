@@ -1,0 +1,15 @@
+#!/bin/sh
+set -e
+
+# To install this post-receive hook on a Gitolite server:
+#   vim hooks/post-receive # Edit WHETSTONE_ROOT_URL to match your server
+#   scp hooks/post-receive root@gitolite-server:/tmp/post-receive
+#   ssh root@gitolite-server
+#   su git
+#   mkdir -p ~/local/hooks/common
+#   cp /tmp/post-receive ~/local/hooks/common
+#   chmod +x ~/local/hooks/common/post-receive
+#   gitolite setup --hooks-only
+
+WHETSTONE_ROOT_URL="http://example.com"
+curl -XPOST "$WHETSTONE_ROOT_URL/api/pushes/$GL_REPO"

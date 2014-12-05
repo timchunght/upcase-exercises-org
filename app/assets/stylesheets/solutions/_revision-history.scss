@@ -1,0 +1,153 @@
+$tooltip-image-size: 50px;
+$tooltip-height: $tooltip-image-size + $base-margin + 2;
+$tooltip-padding-left: $tooltip-image-size + $base-margin;
+$tooltip-nub-size: 20px;
+$small-size: 20px;
+$large-size: $small-size + 7px;
+
+.revision-history {
+  $margin-bottom: 18px;
+  @include clearfix;
+  line-height: 0;
+  width: $files-width;
+  @include display(flex);
+  margin-left: $sidebar-width;
+  padding-left: $main-padding;
+
+  @include media($tighten) {
+    margin-left: $sidebar-width-sm;
+    padding-left: $main-padding-sm;
+  }
+
+  ol {
+    @include clearfix;
+    display: inline-block;
+    list-style: none;
+    margin: 0 0 $margin-bottom 14px;
+    padding: 0;
+    position: relative;
+    @include display(inline-flex);
+    @include flex-direction(row);
+
+    &:after {
+      background: #D4D4D4;
+      content: "";
+      height: 2px;
+      left: 0;
+      margin-top: -1px;
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      z-index: -1;
+    }
+  }
+
+  li {
+    $pad-right: 15px;
+    width: $small-size + $pad-right;
+    position: relative;
+
+    &:hover .tooltip {
+      display: block;
+    }
+
+    &.current {
+      width: $large-size + $pad-right;
+
+      &:after {
+        background: #8AAEF3;
+        content: "";
+        height: $margin-bottom;
+        left: $large-size/2;
+        margin-left: -1px;
+        position: absolute;
+        width: 2px;
+        z-index: -1;
+      }
+
+      a {
+        border-color: #8AAEF3;
+        height: $large-size;
+        width: $large-size;
+        top: 0;
+      }
+
+      .tooltip {
+        left: -$tooltip-padding-left + 2;
+      }
+    }
+
+    &:last-of-type {
+      width: auto;
+    }
+
+
+    a {
+      background: #fff;
+      border: 2px solid #D4D4D4;
+      border-radius: $small-size;
+      display: block;
+      height: $small-size;
+      width: $small-size;
+      position: relative;
+      top: 4px;
+    }
+  }
+
+  .tooltip {
+    background: #fff;
+    display: none;
+    border: 1px solid $base-border-color;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.09);
+    height: $tooltip-height;
+    left: -$tooltip-padding-left - 2;
+    line-height: 1.2em;
+    min-width: 285px;
+    padding: $base-margin/2;
+    padding-left: $tooltip-padding-left;
+    position: absolute;
+    top: -$tooltip-height - 15px;
+    z-index: 1;
+
+    &:before, &:after {
+      @include triangle($tooltip-nub-size + 2, #fff, down);
+      content: "";
+      position: absolute;
+      bottom: -$tooltip-nub-size;
+    }
+
+    &:before {
+      border-top-color: $base-border-color;
+      bottom: -$tooltip-nub-size - 2;
+    }
+
+    &:after {
+      border-top-color: #fff;
+    }
+
+    img {
+      position: absolute;
+      left: 0.5em;
+      border-radius: $tooltip-image-size;
+      width: $tooltip-image-size;
+    }
+
+    span {
+      display: block;
+      font-weight: 500;
+
+      &.title {
+        font-size: $base-font-size-sm-2;
+        font-weight: bold;
+        margin-top: 6px;
+      }
+
+      &.timestamp {
+        font-size: $base-font-size-sm-4;
+        color: $medium-gray;
+      }
+    }
+  }
+}
+

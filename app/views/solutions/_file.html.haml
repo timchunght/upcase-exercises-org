@@ -1,0 +1,26 @@
+%section.file{ :data => { :role => "file", :location => file.location_template } }
+  %span.filename= file.name
+  .highlight-scroll
+    .code
+      - file.each_line do |line|
+        = content_tag_with_conditional_classes( |
+          :div,                                 |
+          class_names: {                        |
+            blank: line.blank?,                 |
+            comments: line.changed?,            |
+            line: true                          |
+          },                                    |
+          data: { role: 'line' }                |
+        ) do                                    |
+          - if line.comments.any?
+            = render "comments/show_comments_icon", comments: line.comments
+
+          %pre
+            %code
+              :preserve
+                #{h line.text}
+        - if line.comments.any?
+          = render 'solutions/inline_comments',
+            comments: line.comments,
+            location: line.location,
+            revision: revision

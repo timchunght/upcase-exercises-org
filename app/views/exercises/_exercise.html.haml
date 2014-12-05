@@ -1,0 +1,14 @@
+- overview.clone.present do |instance|
+  - if instance.pending?
+    %div.loading-indicator
+      = image_tag "loading-logo.svg", class: "loading-logo"
+      = t('clones.create.pending')
+  - else
+    = render "exercises/clone", overview: overview, clone: instance
+- overview.clone.blank do
+  = button_to(                              |
+    t("exercises.show.start_exercise"),     |
+    exercise_clone_path(overview.exercise), |
+    method: :post,                          |
+    remote: true,                           |
+  )                                         |

@@ -1,0 +1,70 @@
+.exercise-index {
+  .add-new-exercise {
+    @include exercise-button($button-green);
+    margin-bottom: 2rem;
+  }
+
+  .exercise-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: block;
+      margin: 0 0 1rem 0;
+
+      a {
+        @include exercise-button;
+      }
+    }
+  }
+}
+
+.edit-exercise {
+  .exercise-link {
+    @include exercise-button;
+    margin-bottom: 2rem;
+  }
+}
+
+.new_exercise, .edit_exercise {
+  .exercise_title {
+    margin-bottom: 2rem;
+
+    label {
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+  }
+
+  .editor {
+    @include display(flex);
+    margin-bottom: $base-margin*2;
+
+    textarea, .preview {
+     min-height: 42vh;
+      @include flex(1);
+      float: left;
+      height: 100%;
+      width: 50%;
+    }
+
+    textarea {
+      resize: vertical
+    }
+
+    .preview {
+      overflow: scroll;
+      padding: 0 0 0 3rem;
+    }
+  }
+
+  input[type=submit] {
+    display: block;
+    line-height: 1.5rem;
+    margin-top: 4rem;
+    padding: .5rem 1rem;
+    position: relative;
+    width: 100%;
+  }
+}

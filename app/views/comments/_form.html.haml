@@ -1,0 +1,6 @@
+%li.comment-form-wrapper{ :data => { :role => "comment-form" } }
+  = simple_form_for [revision.solution, Comment.new_top_level], remote: true, |
+    html: { class: 'comment-form' } do |f|
+    = f.hidden_field :location
+    = f.input :text, label: false, placeholder: 'Write a general comment about this solution'
+    = f.submit t('.submit'), "data-disable-with" => "Submitting ..."

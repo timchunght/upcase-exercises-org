@@ -1,0 +1,9 @@
+- content_for :page_title, 'Upload Public Key'
+
+%article.main-inner
+  %header
+    %h1= 'Upload Public Key'
+
+  = render 'gitolite/public_keys/form',
+    return_to: params[:return_to],
+    public_key: @public_key

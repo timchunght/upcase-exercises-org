@@ -1,0 +1,13 @@
+Hey <%= @recipient.first_name %>,
+
+<% if @recipient == @submitter %>
+Your solution to <%= @exercise.title %> just received a new comment by
+<%= @author.username %>:
+<% else %>
+<%= @submitter.username %>'s solution to <%= @exercise.title %> just received a
+new comment by <%= @author.username %>:
+<% end %>
+
+<%= @comment.text %>
+
+<%= exercise_solution_url(@exercise, @submitter) %>

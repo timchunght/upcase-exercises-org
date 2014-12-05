@@ -1,0 +1,13 @@
+.exercise-progress
+  = render "exercises/progress_step",
+    class_name: "submitted",
+    complete: progress.has_submitted_solution?,
+    caption: t("exercises.progress.submitted")
+  = render "exercises/progress_step",
+    class_name: "peer-review",
+    complete: progress.has_reviewed_other_solution?,
+    caption: t("exercises.progress.peer_review")
+  = render "exercises/progress_step",
+    class_name: "my-review",
+    complete: progress.has_received_review?,
+    caption: t("exercises.progress.my_review")

@@ -1,0 +1,23 @@
+= simple_form_for [:admin, exercise] do |form|
+  = form.input :title
+
+  %h3 Summary
+  %p
+    Short summary to be used in trail step on Upcase side, which will be shown
+    when user hovers over a dot.
+  .editor#summary
+    = form.input_field :summary
+    .preview#summary
+
+  %h3 Intro
+  %p This introduction will be shown when user arrives at the exercise page.
+  .editor#intro
+    = form.input_field :intro
+    .preview#intro
+
+  %h3 Instructions
+  %p This instruction will be shown after user starts the exercise.
+  .editor.instructions#instructions
+    = form.input_field :instructions
+    .preview#instructions
+  = form.submit

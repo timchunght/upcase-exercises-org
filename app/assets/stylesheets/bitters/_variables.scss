@@ -1,0 +1,65 @@
+// Typography
+///////////////////////////////////////////////////////////////////////////////
+$sans-serif: $helvetica;
+$serif: $georgia;
+
+$base-font-family: 'Gotham SSm A', 'Gotham SSm B';
+$header-font-family: $base-font-family;
+
+// Sizes
+///////////////////////////////////////////////////////////////////////////////
+$base-font-size-sm-4: 11px;
+$base-font-size-sm-3: 12px;
+$base-font-size-sm-2: 13px;
+$base-font-size-sm-1: 14px;
+$base-font-size: 15px;
+$base-font-size-lg-1: 16px;
+$base-font-size-lg-2: 17px;
+$base-font-size-lg-3: 18px;
+
+$base-line-height: $base-font-size * 1.5;
+$base-border-radius: em(3);
+
+$h1-font-size: $base-font-size * 1.8;
+
+
+$base-margin: 20px;
+$base-padding: 16px;
+$sidebar-padding: 2.2rem 1.8rem;
+$sidebar-padding-sm: 2.2rem 1.2rem;
+
+// Layout
+$max-width-main: 1400px;
+$min-width-main: 800px;
+
+
+// Colors
+///////////////////////////////////////////////////////////////////////////////
+
+$blue: #477DCA;
+$dark-gray: #333;
+$medium-gray: #999;
+$light-gray: #DDD;
+$light-red: #FBE3E4;
+$light-yellow: #FFF6BF;
+$light-green: #E6EFC2;
+
+// Body Color
+$base-body-color: white;
+
+// Font Colors
+$base-font-color: $dark-gray;
+$base-accent-color: $blue;
+
+// Text Link Colors
+$base-link-color: $base-accent-color;
+$hover-link-color: darken($base-accent-color, 15);
+
+// Border color
+$base-border-color: $light-gray;
+$base-border-color-2: #efefef;
+
+// Flash Colors
+$error-color: $light-red;
+$notice-color: $light-yellow;
+$success-color: $light-green;

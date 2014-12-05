@@ -1,0 +1,13 @@
+%div
+  .inner.has-icon
+    = image_tag "#{all_steps_completed.reviewer_avatar_url}?s=96",
+        class: "avatar"
+    .content
+      %h1
+        = t("solutions.statuses.completed",
+            username: all_steps_completed.reviewer_username)
+      %p= t("solutions.statuses.to_submit_revision")
+
+%div
+  .inner
+    = render 'statuses/next_exercise'

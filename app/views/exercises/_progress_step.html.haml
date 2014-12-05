@@ -1,0 +1,10 @@
+= content_tag_with_conditional_classes( |
+  :div,                                 |
+  class_names: {                        |
+    class_name => true,                 |
+    complete: complete                  |
+  }                                     |
+) do                                    |
+  %span.indicator
+    %span.icon
+  .tooltip= caption

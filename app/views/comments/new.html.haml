@@ -1,0 +1,8 @@
+.line-comments
+  %ol
+    %li.form
+      = simple_form_for [@comment.solution, @comment], remote: true do |f|
+        = f.hidden_field :location
+        %div.comment-textarea
+          = f.text_area :text, placeholder: 'Write a comment about this line'
+          = f.submit t('comments.form.submit')

@@ -1,0 +1,37 @@
+%header.solutions-main
+  %nav.participants
+    %ul.solutions.my-solution
+      %li
+        = link_to exercise_path(@overview.exercise) do
+          = render 'solutions/user', user: current_user
+
+  %section.next-steps
+    %div
+      .inner
+        .content
+        %h1= t('solutions.statuses.ready_for_submission')
+        %p
+          Double check your work, push any revisions, refresh &mdash;
+          then submit your solution.
+
+    %div
+      .inner
+        %h2.title= t(".next_step")
+        = button_to t(".submit_my_solution"),
+            exercise_solutions_path(@overview.exercise),
+            method: :post,
+            class: 'button'
+
+%div.main-inner
+  %div.main-body{ :data => { :role => 'review' } }
+    %section.files.next-steps-active
+      - @overview.files.each do |file|
+        = render 'file', file: file
+
+    %section.next-steps-bottom
+      = button_to t("solutions.new.submit_my_solution"),
+          exercise_solutions_path(@overview.exercise),
+          method: :post,
+          class: 'continue-button'
+
+      %span= t(".next_step")

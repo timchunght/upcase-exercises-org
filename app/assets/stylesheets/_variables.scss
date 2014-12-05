@@ -1,0 +1,41 @@
+$avatar-size: 1.5rem;
+$bg-green: #71BE1D;
+$blue-alt: #1785E7;
+$blue: $blue;
+$brown: #5c4a33;
+$button-green: #57C75C;
+$green: #7BAF49;
+$red: #ff4856;
+
+$nav-height: 60px;
+
+$sidebar-width: 18.5rem;
+$sidebar-width-sm: 17.5rem;
+$sidebar-bg: #f6f6f6;
+$sidebar-border: #efefef;
+$sidebar-padding: 2.2rem 1.8rem;
+$sidebar-padding-sm: 2.2rem 1.2rem;
+
+$next-steps-bg: #FFF5C2;
+$next-steps-border: #EDDAA5;
+$next-steps-color: #5C4A33;
+
+// Backgrounds for code highlighting
+$highlight-blue: #DFFDFF;
+$highlight-green: #dcfedc;
+$highlight-yellow: #FFF5C2;
+
+$files-width: 65%;
+$timeline-width: 100% - $files-width;
+
+$main-padding: 3rem;
+$main-padding-sm: 2rem;
+
+$files-80-char-width: 668px;
+$preserve-80-char-width: 1405px;
+$tighten: max-width ($preserve-80-char-width);
+$collapse-comments: max-width ($preserve-80-char-width - (16px*2));
+
+// Background blue:
+$base-bg-active: #B2DCFD;
+$base-border-active: #9BBFFF;

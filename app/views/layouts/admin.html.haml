@@ -1,0 +1,20 @@
+!!!
+%html
+  %head
+    %meta{ 'charset' => "utf-8" }
+    %meta{ 'name' => "ROBOTS", 'content' => "NOODP" }
+    %title= page_title
+    = stylesheet_link_tag '//cloud.typography.com/6716232/776984/css/fonts.css', :media => 'all'
+    = stylesheet_link_tag :application, :media => 'all'
+    = stylesheet_link_tag '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css'
+    = csrf_meta_tags
+  %body{ 'class' => "#{body_class}" }
+    = render 'flashes'
+    %nav.main
+      .nav-inner
+        = link_to '&larr; Back to dashboard'.html_safe, root_path, class: 'back'
+    %section.main
+      %article.main-inner
+        = yield
+    = render 'javascript'
+

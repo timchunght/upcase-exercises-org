@@ -1,0 +1,146 @@
+header.solutions-main {
+  $padding: 2.3rem;
+  background: rgba(0, 0, 0, 0.03);
+  bottom: auto;
+  box-shadow: 0 1px 0 hsla(0, 0%, 0%, 0.06);
+  min-height: 195px;
+  padding: $padding 0;
+  position: relative;
+  z-index: 1;
+
+  .participants {
+    background: none;
+    padding-top: $padding;
+
+    &:after {
+      display: none;
+    }
+  }
+
+  ul.solutions {
+    margin: 0;
+
+    a {
+      opacity: 1;
+    }
+  }
+}
+
+header.solutions-main {
+  $indicator-size: 18px;
+  $inactive-color: darken($light-gray, 6%);
+
+  .exercise-progress {
+    @include align-items(center);
+    box-sizing: content-box;
+    @include display(flex);
+    height: $indicator-size;
+    @include justify-content(space-between);
+    padding: 10px;
+    border-top: 1px solid darken($sidebar-border, 5%);
+
+    > div {
+      $height: 7px;
+      background: $inactive-color;
+      @include display(flex);
+      @include flex(1);
+      height: $height;
+      @include justify-content(center);
+      margin: -1px 2px 0;
+      position: relative;
+
+      &:first-of-type {
+        @include border-left-radius($height);
+        margin-left: 0;
+      }
+
+      &:last-of-type {
+        @include border-right-radius($height);
+        margin-right: 0;
+      }
+    }
+
+    .indicator {
+      $border: 4px;
+      background: #fff;
+      border: $border solid $inactive-color;
+      border-radius: $indicator-size;
+      box-sizing: content-box;
+      display: inline-block;
+      margin-top: -$indicator-size/2;
+      @include size($indicator-size);
+
+      &:hover + .tooltip {
+        opacity: 1;
+        @include transition(all 0.15s $ease-out-quad);
+      }
+    }
+
+    .icon {
+      background-position: center;
+      display: block;
+      position: relative;
+      @include size($indicator-size);
+
+      &:before, &:after {
+        background: $medium-gray;
+        content: "";
+        height: 12px;
+        left: 9px;
+        position: absolute;
+        top: 3px;
+        @include transform(rotate(45deg));
+        width: 1px;
+      }
+
+      &:after {
+        @include transform(rotate(-45deg));
+      }
+    }
+
+    .complete {
+      $bg-green: #71BE1D;
+      background-color: $bg-green;
+
+      .indicator {
+        border-color: $bg-green;
+      }
+
+      .icon {
+        background: transparent image_url('finished-check.svg') no-repeat;
+        background-position: center 58%;
+
+        &:before, &:after {
+          display: none;
+        }
+      }
+    }
+
+    .tooltip {
+      $bg: #3E3C44;
+      background: $bg;
+      border-radius: 3px;
+      color: #fff;
+      font-size: $base-font-size-sm-2;
+      height: 30px;
+      line-height: 1.45;
+      margin-left: 10px;
+      opacity: 0;
+      padding: 6px 16px;
+      pointer-events: none;
+      @include position(absolute, -12px 0 0 0);
+      white-space: nowrap;
+      z-index: 10;
+
+      &:before {
+        $size: 16px;
+        content: "";
+        left: -$size;
+        margin-top: -$size/2;
+        position: absolute;
+        top: 50%;
+        @include triangle(16px, $bg, left);
+      }
+    }
+  }
+}

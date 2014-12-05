@@ -1,0 +1,7 @@
+%li.solution-comment
+  = render 'avatar', user: comment.user
+  %span
+    = html_escaped_markdown(comment.text)
+    %span.timestamp
+      = time_ago_in_words(comment.created_at)
+      ago

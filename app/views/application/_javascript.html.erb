@@ -1,0 +1,23 @@
+<%= javascript_include_tag :application %>
+<%= javascript_include_tag :pusher %>
+
+<%= yield :javascript %>
+
+<%= render 'segment_io', user: current_user %>
+
+<% if Rails.env.test? %>
+  <%= javascript_tag do %>
+    $.fx.off = true;
+    $.ajaxSetup({ async: false });
+  <% end %>
+<% end %>
+
+<% if defined?(PusherFake) %>
+  <script>
+    Pusher.instance = <%== PusherFake.javascript %>;
+  </script>
+<% else %>
+  <script>
+    Pusher.instance = new Pusher("<%=j Pusher.key %>");
+  </script>
+<% end %>

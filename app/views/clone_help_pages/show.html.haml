@@ -1,0 +1,19 @@
+%section.instructions
+  %h3 Trouble Cloning
+
+  :markdown
+    Are you receiving the following message when attempting to clone?
+
+        Permission denied (publickey).
+
+    If so, this means that we don't have your public key correctly set up. In
+    most cases, you can fix this by uploading your public key below. You can
+    generally find this in `~/.ssh/id_rsa.pub`.
+
+    Still having trouble? [Get in touch].
+
+    [Get in touch]: mailto:help@upcase.com
+
+  = render 'gitolite/public_keys/form',
+    return_to: params[:return_to],
+    public_key: Gitolite::PublicKey.new

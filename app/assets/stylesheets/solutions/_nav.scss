@@ -1,0 +1,20 @@
+nav.main.solutions {
+  padding-left: $sidebar-width;
+
+  .back {
+    position: absolute;
+    left: 3rem;
+  }
+
+  .nav-inner {
+    padding-bottom: 0;
+    padding-top: 0;
+    min-width: 0;
+    max-width: 100%;
+    padding: 0 0 0 3rem;
+
+    .exercise-nav {
+      float: none;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+%section.revision-history
+  %ol
+    - feedback.revisions.each do |revision|
+      = content_tag_with_conditional_classes :li,
+        class_names: { current: revision.id == feedback.viewed_revision.id } do
+        %div.tooltip
+          = image_tag(revision.user.avatar_url)
+          %span.title
+            = "Revision #{revision.number}"
+          %span.timestamp
+            = time_ago_in_words(revision.created_at)
+        = link_to "",
+            revision_or_solution_url(revision),
+            :data => { :link => "revision-#{revision.id}" }

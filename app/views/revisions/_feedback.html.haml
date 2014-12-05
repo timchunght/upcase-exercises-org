@@ -1,0 +1,12 @@
+%div.main-body{ :data => { :role => "review" } }
+  %section.files.next-steps-active
+    - feedback.files.each do |file|
+      = render "solutions/file", file: file, revision: feedback.viewed_revision
+
+  %aside.comments.next-steps-active{ :data => { :role => 'top-level-comments' } }
+    %ol
+      = render feedback.top_level_comments
+      = render 'comments/form', revision: feedback.viewed_revision
+
+    - if feedback.latest_revision?
+      = render "inline_comment_form", revision: feedback.viewed_revision

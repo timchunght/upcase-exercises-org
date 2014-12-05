@@ -1,0 +1,20 @@
+$ ->
+  channelName = $("#overview").data("channel-name")
+  cloneUrl = $("#overview").data("clone-url")
+  if channelName
+    channel = Pusher.instance.subscribe(channelName)
+
+    channel.bind "cloned", ->
+      $("#overview").load(cloneUrl)
+
+    channel.bind "pushed", ->
+      $("#overview").load(cloneUrl)
+
+    channel.bind "uploaded_key", ->
+      $("#overview").load(cloneUrl)
+
+    $("body").on "ajax:success", ".clone-help", (e, html) ->
+      $("#overview").html(html)
+
+    $("body").on "ajax:success", "#overview form", (e, html) ->
+      $("#overview").html(html)

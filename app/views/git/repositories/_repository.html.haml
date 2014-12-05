@@ -1,0 +1,6 @@
+%pre
+  %code
+    :preserve
+      git clone #{repository.url}
+      cd #{repository.name}
+      bin/setup

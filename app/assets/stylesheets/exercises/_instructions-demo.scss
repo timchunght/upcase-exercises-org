@@ -1,0 +1,115 @@
+section.main article.main-inner {
+  .exercise-demo {
+    ol {
+      background: $sidebar-bg;
+      @include border-top-radius(3px);
+      @include display(flex);
+      list-style: none;
+      margin: 0;
+      overflow: hidden;
+      padding: 0;
+
+      li {
+        @include align-items(center);
+        border: 1px solid darken($sidebar-border, 5%);
+        border-left-width: 0;
+        @include display(flex);
+        @include flex(1);
+        font-size: $base-font-size-sm-1;
+        position: relative;
+        text-align: center;
+        @include transition(none);
+
+        &:after {
+          $size: 18px;
+          background: url("check.svg") no-repeat;
+          background-position: center;
+          background-size: 11px;
+          border: 1px solid #56B84E;
+          border-radius: 18px;
+          content: "";
+          height: $size;
+          left: 6%;
+          margin-top: -$size/2 - 2.5px;
+          opacity: 0;
+          padding: 1px;
+          position: absolute;
+          top: 50%;
+          width: $size;
+        }
+
+        &.completed {
+          &:after {
+            @extend %anim-show-check;
+            opacity: 1;
+          }
+        }
+
+        &:last-of-type {
+          &.completed {
+            &:after {
+              @extend %anim-show-check;
+              opacity: 0;
+              @include animation-delay(0.8s);
+            }
+          }
+        }
+
+        &:first-child {
+          border-left-width: 1px;
+        }
+
+        &.active {
+          background: $blue;
+          border-color: darken($blue, 5%);
+          box-shadow: -1px 0 0 darken($blue, 5%);
+
+          a {
+            color: #fff;
+          }
+        }
+
+        a {
+          color: $base-font-color;
+          cursor: pointer;
+          display: block;
+          @include flex(1);
+          font-weight: bold;
+          padding: 10px 5px;
+          @include transition(none);
+
+          &:after {
+            @include triangle(20px, $sidebar-bg, right);
+          }
+        }
+      }
+    }
+
+    section.tabs {
+      border: 1px solid $sidebar-border;
+      @include border-bottom-radius(3px);
+      border-top: 0;
+      @include clearfix;
+      margin-top: -2px;
+      padding: $base-padding*2 $base-padding 0 $base-padding;
+
+      header {
+        padding: 0 $base-padding;
+      }
+
+      article div {
+        @include clearfix;
+        float: left;
+        width: 50%;
+      }
+
+      pre {
+        margin: 1em 0;
+      }
+
+      .left pre {
+        margin-right: 1em;
+      }
+    }
+  }
+}

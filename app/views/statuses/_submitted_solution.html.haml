@@ -1,0 +1,10 @@
+%div
+  .inner
+    .content
+    %h1= t('solutions.statuses.submitted')
+    %p You can push more revisions as necessary.
+
+%div
+  .inner
+    = render "statuses/link_to_assigned_solution",
+      assigned_solution: submitted_solution.assigned_solution

@@ -1,0 +1,8 @@
+%h1 Peer Solutions
+- if solutions.solutions_by_other_users.present?
+  %ul.solutions
+    = render solutions.solutions_by_other_users, solutions: solutions
+- else
+  .no-solutions
+    %b= t('solutions.show.no_solutions_heading')
+    = t('solutions.show.no_solution_explanation')

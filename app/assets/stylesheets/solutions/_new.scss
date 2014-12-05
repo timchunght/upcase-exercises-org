@@ -1,0 +1,12 @@
+.next-steps-bottom {
+  clear: both;
+
+  form, div, .continue-button {
+    display: inline;
+  }
+
+  .continue-button {
+    @extend %exercise-buttons;
+    margin-right: 1rem;
+  }
+}

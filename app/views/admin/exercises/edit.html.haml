@@ -1,0 +1,16 @@
+.edit-exercise
+  = link_to exercise_path(@exercise), class: 'exercise-link', target: '_blank' do
+    = @exercise.title
+    %i.fa.fa-arrow-circle-o-right.fa-lg
+
+  - if @exercise.has_solutions?
+    = link_to(                                                   |
+      'View Solutions',                                          |
+      exercise_solution_path(@exercise, @exercise.solvers.first) |
+    )                                                            |
+
+  %p To edit the code for this exercise:
+  %pre
+    %code= render @exercise.source
+
+  = render 'admin/exercises/form', exercise: @exercise

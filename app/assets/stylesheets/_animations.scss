@@ -1,0 +1,29 @@
+%anim-show-check {
+  @include animation(show-check 0.6s $ease-out-back forwards);
+}
+
+@include keyframes(show-check) {
+  0% {
+    @include transform(scale(0));
+    opacity: 1;
+  }
+  100% {
+    @include transform(scale(1));
+    opacity: 1;
+  }
+}
+
+%animation-bob {
+  @include animation(bob .5s $ease-out-back infinite forwards);
+  @include animation-direction(alternate);
+}
+
+@include keyframes(bob) {
+  0% {
+    @include transform(translateY(3px));
+  }
+
+  100% {
+    @include transform(translateY(-3px));
+  }
+}

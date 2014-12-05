@@ -1,0 +1,22 @@
+- content_for :page_title, @overview.title
+
+= render "exercises/navigation",
+  exercise: @overview.exercise,
+  solutions: @overview.solutions
+
+%article.main-inner.instructions
+  %nav.instructions-sidebar
+    = render "exercises/sidebar", overview: @overview
+
+  .main-body
+    %header
+      %h1= @overview.title
+
+    = render "exercises/intro", exercise: @overview.exercise
+
+    #overview{ "data-clone-url" => exercise_clone_path(@overview.exercise),
+               "data-channel-name" => @overview.channel_name }
+      - if @overview.has_pending_public_keys?
+        = render "gitolite/public_keys/pending"
+      - else
+        = render "exercises/exercise", overview: @overview

@@ -1,0 +1,111 @@
+en:
+
+  admin:
+    dashboards:
+      show:
+        exercises: 'Exercises'
+        solutions: 'Solutions'
+    exercises:
+      index:
+        create_exercise: 'Create Exercise'
+        update_exercise: 'Update Exercise'
+      update:
+        notice: 'Exercise updated.'
+    solutions:
+      index:
+        comments:
+          one: '1 comment'
+          other: '%{count} comments'
+
+  clones:
+    create:
+      pending: "We're creating your repository. Just a sec..."
+
+  comments:
+    form:
+      submit: 'Comment'
+      new: 'Add comment'
+
+  activerecord:
+    errors:
+      models:
+        gitolite/public_key:
+          attributes:
+            data:
+              taken: "has already been used. Please generate a new SSH keypair for this user."
+
+  exercises:
+    progress:
+      submitted: 'Submitted a solution'
+      peer_review: 'Reviewed a peer'
+      my_review: 'Reviewed by a peer'
+    show:
+      clone_help: 'Getting an error when cloning?'
+      no_commits: 'Waiting for your first commit...'
+      public_key_pending: "We're adding your public key to our Git server. This may take a minute."
+      push_solution: 'Push Solution'
+      start_exercise: 'Start Exercise'
+      preview_my_solution: 'Preview my solution'
+      view_fingerprints: "View host fingerprints"
+
+  gitolite:
+    public_keys:
+      create:
+        notice: 'Your public key has been added.'
+
+  mailer:
+    comment:
+      subject:
+        self: "A comment was posted on your solution to %{exercise}"
+        others: "New comment on %{username}'s solution to %{exercise}"
+
+  solutions:
+    new:
+      next_step: "Next step, review a peer's solution"
+      submit_my_solution: 'Submit my solution'
+    show:
+      continue: 'Continue'
+      my_solution: 'My solution'
+      no_solution: 'You have not submitted a solution.'
+      no_solutions_heading: 'You are the first to complete this exercise!'
+      no_solution_explanation: 'Return back shortly to review a peer.'
+      peer_solutions: 'Peer Solutions'
+      solution_for_user: "%{username}'s solution"
+    solution:
+      assigned: 'Please review this solution.'
+    statuses:
+      no_solution: "You haven't submitted a solution yet."
+      ready_for_submission: "Nice! Your solution is ready for submission."
+      submitted: "Nice! You've submitted your solution."
+      reviewing: "You have been assigned to review %{username}'s solution."
+      awaiting_review: 'Your solution is awaiting review'
+      completed: "Your solution has been reviewed by %{username}!"
+      to_submit_revision: 'To submit a revision, push a new commit.'
+      we_will_email_you: 'We will email you when your solution has been reviewed'
+
+  date:
+    formats:
+      default: '%m/%d/%Y'
+      with_weekday: '%a %m/%d/%y'
+
+  helpers:
+    submit:
+      exercise:
+        create: 'Create Exercise'
+      gitolite_public_key:
+        create: 'Upload your public key'
+      username:
+        update: 'Set Username'
+
+  simple_form:
+    labels:
+      gitolite_public_key:
+        data: 'Public key'
+      user:
+        username: 'Username'
+
+  time:
+    formats:
+      default: '%a, %b %-d, %Y at %r'
+      date: '%b %-d, %Y'
+      short: '%B %d'

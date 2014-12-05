@@ -1,0 +1,58 @@
+@mixin align-main-container {
+  @include box-sizing(content-box);
+  margin: 0 auto;
+  max-width: 860px;
+  min-width: 600px;
+  padding: 2.5rem 5% 4.5rem;
+}
+
+@mixin exercise-button($color: $blue) {
+  border: 2px solid $color;
+  border-radius: .25rem;
+  color: $color;
+  display: block;
+  font-weight: bold;
+  padding: .5rem 1rem;
+
+  &:hover {
+    color: darken($color, 12%);
+    border-color: darken($color, 12%);
+  }
+
+  i {
+    float: right;
+    line-height: 1.5rem;
+  }
+}
+
+@mixin pseudo-circle {
+  background: #fff;
+  border: 3px solid #ddd;
+  border-radius: 50%;
+  box-sizing: border-box;
+  content: '';
+  display: block;
+  height: $avatar-size;
+  @include position(absolute, 0 0 0 0px);
+  width: $avatar-size;
+}
+
+@mixin pseudo-circle-small {
+  border-radius: 50%;
+  content: '';
+  display: block;
+  height: 10px;
+  margin-top: 6px;
+  @include position(absolute, 0 0 0 0px);
+  width: 10px;
+}
+
+@mixin pseudo-connecting-line {
+  border-left: 2px solid #eee;
+  content: '';
+  display: block;
+  margin-left: .5rem;
+  margin-top: 1.5rem;
+  @include position(absolute, 2rem 0 -1rem 11px);
+  z-index: -1;
+}

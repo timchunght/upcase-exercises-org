@@ -1,0 +1,10 @@
+- content_for :navigation do
+  - if solutions.user_has_solution?
+    .tabs
+      = link_to "Solutions",
+        exercise_solution_path(exercise, solutions.assigned_solver),
+        class: "solutions"
+      = link_to "Instructions", exercise_path(exercise), class: "instructions"
+
+  %h1.exercise-title
+    %span= exercise.title

@@ -1,0 +1,138 @@
+nav.instructions-sidebar {
+  $margin: 2em;
+
+  .solution-status {
+    @extend %solution-status;
+
+    .inner {
+      .button {
+        @extend %exercise-buttons;
+        display: block;
+        margin-top: 1.5em;
+      }
+
+      .content {
+        > p {
+          line-height: 1.5;
+        }
+      }
+
+      h2 {
+        line-height: 1.5;
+      }
+
+      .title {
+        border-top: 1px solid #eddaa5;
+        font-size: 14px;
+        padding-top: 2em;
+      }
+    }
+
+    .icon {
+      margin: 0 auto;
+      padding-bottom: $base-padding*3;
+
+      &.checkmark {
+        @extend %icon-complete-check;
+      }
+
+      &.clock {
+        @extend %icon-clock;
+      }
+
+      &.comment {
+        @extend %icon-comment;
+      }
+    }
+
+    h1 {
+      color: $brown;
+      font-size: 17px;
+      font-weight: bold;
+      line-height: 1.5em;
+      margin-top: $base-margin;
+    }
+
+    .no-solutions, .next-steps-sidebar {
+      margin-bottom: 1.25em;
+      padding: 2em;
+
+      p {
+        margin-bottom: 0;
+      }
+    }
+
+    .affirmation {
+      background: white;
+      border: 1px solid darken($sidebar-border, 5%);
+      color: darken($green, 8%);
+      text-align: center;
+
+      &.message {
+        padding: 20px;
+      }
+
+      .complete-check-wrapper {
+        background: $bg-green;
+        padding: 1em 0;
+      }
+    }
+  }
+
+  &.instructions-sidebar {
+    @extend %sidebar;
+    padding: 0;
+
+    header.solutions-main {
+      margin: 0 0;
+    }
+
+    header.solutions-main, .padding {
+      padding: $sidebar-padding; //.padding only applies padding
+
+      @include media($tighten) {
+        padding: $sidebar-padding-sm;
+      }
+    }
+
+    h5 {
+      text-transform: uppercase;
+      font-size: em(13);
+      margin-bottom: $margin;
+    }
+
+    .recent-activity {
+       margin-top: $margin*1.25;
+
+      > a {
+        font-size: em(13);
+      }
+
+      ul {
+        line-height: 1.2;
+        font-size: em(13);
+
+        li {
+          position: relative;
+          padding-left: 2.75em;
+        }
+
+        img {
+          border-radius: 50%;
+          left: 0;
+          top: 0;
+          position: absolute;
+          vertical-align: top;
+        }
+
+        .timestamp {
+          color: $medium-gray;
+          display: block;
+          font-size: em(9px);
+          line-height: 1.5em;
+          margin-bottom: $margin;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+- if overview.has_public_key?
+  = render 'exercises/instructions', exercise: overview.exercise, clone: clone
+  = render 'exercises/preview_my_solution', overview: overview
+- else
+  = render 'gitolite/public_keys/new',
+    return_to: exercise_path(overview.exercise)

@@ -1,0 +1,10 @@
+%header.solutions-main
+  = render "exercises/my_solution",
+    solutions: overview.solutions,
+    exercise: overview.exercise
+
+  .exercise-progress-bar
+    = render "exercises/progress_bar", progress: overview.progress
+
+.padding
+  = render "exercises/status", status: overview.status

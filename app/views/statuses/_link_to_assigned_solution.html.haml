@@ -1,0 +1,9 @@
+%h2.title Next step, review a peer's solution.
+= link_to(                                                             |
+    t('solutions.show.continue'),                                      |
+    exercise_solution_path(                                            |
+    assigned_solution.exercise,                                        |
+    assigned_solution.user                                             |
+    ),                                                                 |
+    class: 'button'                                                    |
+  )                                                                    |

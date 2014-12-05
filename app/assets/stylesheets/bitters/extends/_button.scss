@@ -1,0 +1,15 @@
+%button {
+  background: $base-accent-color;
+  border: 0;
+  border-radius: 2px;
+  color: #fff;
+  font-size: .84rem;
+  padding: 0.6em 1.2em;
+  line-height: 1;
+  margin: 0;
+  -webkit-font-smoothing: subpixel-antialiased;
+
+  &:hover {
+    background: saturate($base-accent-color, 15%);
+  }
+}

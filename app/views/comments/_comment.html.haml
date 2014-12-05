@@ -1,0 +1,4 @@
+- if comment.top_level?
+  = render 'comments/top_level_comment', comment: comment
+- else
+  = render 'comments/inline_comment', comment: comment

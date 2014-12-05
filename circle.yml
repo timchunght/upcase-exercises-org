@@ -1,0 +1,7 @@
+deployment:
+  staging:
+    branch: master
+    commands:
+      - git push -f git@heroku.com:upcase-exercises-staging.git $CIRCLE_SHA1:master
+      - heroku run rake db:migrate --app upcase-exercises-staging
+      - heroku restart --app upcase-exercises-staging

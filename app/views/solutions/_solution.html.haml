@@ -1,0 +1,11 @@
+= content_tag_with_conditional_classes(                |
+  :li,                                                 |
+  class_names: {                                       |
+    assigned: solution == solutions.assigned_solution, |
+    active: solution == solutions.viewed_solution      |
+  }                                                    |
+) do                                                   |
+  = link_to exercise_solution_url(solution.exercise, solution.user) do
+    = render 'solutions/user', user: solution.user
+    - if solution == solutions.assigned_solution
+      %span.review-status= t('.assigned')

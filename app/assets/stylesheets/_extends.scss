@@ -1,0 +1,105 @@
+%sidebar {
+  background: $sidebar-bg;
+  padding: $sidebar-padding;
+  @include position(absolute, 0px 0 0px 0);
+  width: $sidebar-width;
+
+  // Fix for full-width sidebar
+  &:after {
+    background: $sidebar-bg;
+    border-right: 1px solid $sidebar-border;
+    content: "";
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: $sidebar-width;
+    z-index: -1;
+  }
+
+  h1 {
+    color: #444;
+    font-size: em(22px);
+    font-weight: 300;
+    margin-bottom: 0.65em;
+  }
+
+  @include media($tighten) {
+    padding: $sidebar-padding-sm;
+    width: $sidebar-width-sm;
+
+    &:after {
+      width: $sidebar-width-sm;
+    }
+  }
+}
+
+%exercise-buttons {
+  -webkit-font-smoothing: antialiased;
+  background: darken($button-green, 8%);
+  border-radius: 2px;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 7px 7px*5;
+
+  &:active {
+    background: darken($button-green, 12%);
+  }
+
+  &:hover {
+    background: darken($button-green, 8%);
+  }
+
+  &.next-exercise {
+    $bg: #8A5FC8;
+    background: $bg;
+
+    &:active {
+      background: darken($bg, 6%);
+    }
+  }
+}
+
+%icon-checkmark {
+  $s: 46px;
+  background: image-url('checkmark-icon.svg') no-repeat;
+  background-size: $s;
+  @include size($s);
+}
+
+%icon-clock {
+  $s: 40px;
+  background: image-url('clock.svg') no-repeat;
+  background-size: $s;
+  @include size($s);
+}
+
+%icon-comment {
+  $s: 42px 37px;
+  background: image-url('comment-icon.svg') no-repeat;
+  background-position: 0px 3px;
+  background-size: $s;
+  @include size($s);
+}
+
+%icon-complete-check {
+  $s: 46px;
+  background: image-url('complete-check.svg') no-repeat;
+  background-size: $s;
+  @include size($s);
+}
+
+%solution-status {
+  background: $next-steps-bg;
+  border: 1px solid $next-steps-border;
+  color: $next-steps-color;
+  font-size: 0.9rem;
+  padding: 20px;
+  text-align: center;
+
+  b {
+    display: inline-block;
+    margin-bottom: 1em;
+  }
+}
